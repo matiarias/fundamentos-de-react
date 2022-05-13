@@ -1,0 +1,35 @@
+body {
+    background-color: #315e3c;
+}
+
+.lista {
+    list-style: none;
+    margin-bottom: 15px;
+    cursor: pointer;
+
+}
+
+.container-counter {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+  }
+  
+  .container-counter h3 {
+    font-size: 30px;
+  }
+  
+  .container-counter button {
+    width: 70px;
+    margin-right: 10px;
+  }
+  
+  .number {
+    width: 100px;
+    background-color: #8db2be;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 50%;
+  }
