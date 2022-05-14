@@ -13,7 +13,7 @@ const GaleriaInfo = (props) => {
             </div>
 
             <div>
-                <button className='btn btn-success my-2' onClick={moreInfo}> {show === false ? 'Ver más' : 'Ocultar'}</button>
+                <button className='btn btn-warning my-2' onClick={moreInfo}> {show === false ? 'Ver más' : 'Ocultar'}</button>
 
                 {show && <h4>{galeria[indice].description}</h4>}
 

@@ -1,7 +1,9 @@
 import React from "react";
-import Galeria from "./components/galeria/Galeria";
+import SimpleForm from "./components/useEffect/SimpleForm";
 
 // import TodoList from "./components/todo/TodoList";
+
+// import Galeria from "./components/galeria/Galeria";
 
 // import Mensaje from "./components/Mensaje";
 // import Heroes from "./components/Heroes";
@@ -23,9 +25,10 @@ const App = () => {
             {/* <Mensaje dato={nombre} /> */}
             {/* <Heroes heroes = {heroes} /> */}
 
-            <Galeria />
-            
             {/* <TodoList /> */}
+            {/* <Galeria /> */}
+            <SimpleForm />
+            
         </div>
     )
 };

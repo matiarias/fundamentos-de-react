@@ -73,6 +73,6 @@ const Galeria = () => {
             </div>
         </div>
     )
-}
+};
 
 export default Galeria
