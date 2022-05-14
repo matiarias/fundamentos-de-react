@@ -1,5 +1,7 @@
 import React from "react";
-import TodoList from "./components/todo/TodoList";
+import Galeria from "./components/galeria/Galeria";
+
+// import TodoList from "./components/todo/TodoList";
 
 // import Mensaje from "./components/Mensaje";
 // import Heroes from "./components/Heroes";
@@ -21,7 +23,9 @@ const App = () => {
             {/* <Mensaje dato={nombre} /> */}
             {/* <Heroes heroes = {heroes} /> */}
 
-            <TodoList />
+            <Galeria />
+            
+            {/* <TodoList /> */}
         </div>
     )
 };

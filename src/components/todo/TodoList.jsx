@@ -11,14 +11,14 @@ const TodoList = () => {
     const handleChange = (e) => {
 
         // console.log(e.target.value);
-        setInputValue(e.target.value)
+        setInputValue(e.target.value);
     };
 
     const handleSubmit = (e) => {
 
-        e.preventDefault()
-        setTareas([...tareas, inputValue])
-        setInputValue('')
+        e.preventDefault();
+        setTareas([...tareas, inputValue]);
+        setInputValue('');
     };
 
     const deleteTarea = (indice) => {
