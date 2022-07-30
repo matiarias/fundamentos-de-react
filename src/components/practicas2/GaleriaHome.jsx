@@ -13,7 +13,7 @@ const GaleriaHome = () => {
       </div>
 
       <div className="col-12 col-md-6 offset-md-3">
-        <button className="btn btn-dark">Anterior</button>
+        <button className="btn btn-dark me-3">Anterior</button>
         <button className="btn btn-dark">Siguiente</button>
       </div>
     </div>

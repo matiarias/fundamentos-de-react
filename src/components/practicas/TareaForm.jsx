@@ -11,6 +11,7 @@ const TareaForm = ({ handleSubmit, handleChange, inputValue }) => {
           placeholder="Escribe la tarea"
           value={inputValue}
           onChange={handleChange}
+          autoFocus
         />
       </form>
     </>
