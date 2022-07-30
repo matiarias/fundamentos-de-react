@@ -1,6 +1,6 @@
 import React from "react";
 
-const TareaCard = ({ item, index, borrarTarea, editarTarea }) => {
+const TareaCard = ({ item, index, borrarTarea, editarTareaBtn }) => {
   return (
     <div>
       <div className="card mb-3">
@@ -15,7 +15,7 @@ const TareaCard = ({ item, index, borrarTarea, editarTarea }) => {
               X
             </button>
 
-            <button onClick={editarTarea} className="btn btn-warning btn-sm">
+            <button onClick={editarTareaBtn} className="btn btn-warning btn-sm">
               Editar
             </button>
           </div>

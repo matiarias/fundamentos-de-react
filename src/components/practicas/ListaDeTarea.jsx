@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TareaCard from "./TareaCard";
 import TareaForm from "./TareaForm";
 
@@ -7,17 +6,22 @@ const Practica = () => {
   const [inputValue, setInputValue] = useState("");
   const [task, setTask] = useState([]);
   const [validacion, setValidacion] = useState(true);
+  const [modoEdit, setModoEdit] = useState(false);
+  const [editInput, setEditInput] = useState("");
+
+  // ----------------------- Función para obtener el value del input principal -------------------
 
   const handleChange = ({ target }) => {
     setInputValue(target.value);
   };
+
+  // ----------------- Función submit del formulario que agrega las tareas ------------------
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (inputValue.trim() !== "") {
       setTask([inputValue, ...task]);
-      // localStorage.setItem("tareas", JSON.stringify(task));
       setInputValue("");
       setValidacion(true);
     } else {
@@ -25,17 +29,37 @@ const Practica = () => {
     }
   };
 
+  // ---------------------- Función Borrar tarea y Borrar todas las tareas --------------------------
+
   const borrarTarea = (indice) => {
     const tareasPendientes = [...task];
     tareasPendientes.splice(indice, 1);
     setTask(tareasPendientes);
   };
 
-  const editarTarea = () => {};
-
   const borrarTodo = () => {
     setTask([]);
   };
+
+  // ------------------------------ Función editar tareas ---------------------------------------
+
+  const handleChangeEdit = ({ target }) => {
+    setEditInput(target.value);
+    console.log(target.value);
+  };
+
+  const editarTareaBtn = () => {
+    setModoEdit(true);
+  };
+
+  const submitEdit = (e) => {
+    e.preventDefault();
+    setEditInput("");
+    setModoEdit(false);
+    console.log("submit edit funcionando");
+  };
+
+  // --------------------------------------------------------------------------------------------
 
   return (
     <>
@@ -69,7 +93,7 @@ const Practica = () => {
             </div>
 
             {!validacion && (
-              <div className="alert alert-warning mt-3" role="alert">
+              <div className="alert alert-danger mt-3" role="alert">
                 Escribe tu tarea por favor!
               </div>
             )}
@@ -79,15 +103,43 @@ const Practica = () => {
 
         <div className="row">
           <div className="col-12 col-md-6 offset-md-3 mt-3">
-            {task.map((item, index) => (
-              <TareaCard
-                key={index}
-                item={item}
-                index={index}
-                borrarTarea={borrarTarea}
-                editarTarea={editarTarea}
-              />
-            ))}
+            {!modoEdit ? (
+              task.map((item, index) => (
+                <TareaCard
+                  key={index}
+                  item={item}
+                  index={index}
+                  borrarTarea={borrarTarea}
+                  editarTareaBtn={editarTareaBtn}
+                />
+              ))
+            ) : (
+              <div className="card">
+                <div className="card-body">
+                  <h4 className="text-center">Edita tu tarea</h4>
+                  <div className="d-flex">
+                    <div className="w-100 me-3">
+                      <form onSubmit={submitEdit}>
+                        <input
+                          type="text"
+                          maxLength="25"
+                          className="form-control"
+                          value={editInput}
+                          onChange={handleChangeEdit}
+                        />
+                      </form>
+                    </div>
+
+                    <button
+                      onClick={submitEdit}
+                      className="btn - btn-primary btn-sm"
+                    >
+                      Guardar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
