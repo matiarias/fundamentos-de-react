@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import TareaCard from "./TareaCard";
 import TareaForm from "./TareaForm";
 
@@ -8,6 +9,17 @@ const Practica = () => {
   const [validacion, setValidacion] = useState(true);
   const [modoEdit, setModoEdit] = useState(false);
   const [editInput, setEditInput] = useState("");
+
+  useEffect(() => {
+    console.log("hola");
+    if (localStorage.getItem("tareas")) {
+      setTask(JSON.parse(localStorage.getItem("tareas")));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("tareas", JSON.stringify(task));
+  }, [task]);
 
   // ----------------------- Función para obtener el value del input principal -------------------
 
