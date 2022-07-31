@@ -1,26 +1,23 @@
-import React from "react"
-import ReactDOM from "react-dom"
+import React from "react";
+import ReactDOM from "react-dom";
 
-import "bootstrap/dist/css/bootstrap.min.css"
-import './css/estilo.css'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle";
+import "./css/estilo.css";
 
-import "bootstrap/dist/js/bootstrap.bundle"
-
-import App from "./App"
+import App from "./App";
 // import UserContainer from "./components/UserContainer"
 // import Counter from "./components/Counter"
 
 // const elemento = <h1>Hola React!</h1>
 
-const contenedor = document.querySelector('#root')
+const contenedor = document.querySelector("#root");
 
-
-ReactDOM.render(<App />, contenedor)
+ReactDOM.render(<App />, contenedor);
 
 // como buena practica en el index.js solo renderizamos un solo componente. el componente padre, en este caso, el componente App.
 
 // * ------------------- Desestructuración de objetos y arreglos ----------------------
-
 
 // const pokemones = ['pikachu', 'charizar', 'squirtle'];
 // console.log(pokemones[1]);
@@ -72,7 +69,6 @@ ReactDOM.render(<App />, contenedor)
 
 //   `Hola, soy ${nombreEntrenador} del pueblo ${pueblo}, tengo ${edad} años y me convertiré en el mejor entrenador pokemon`;
 
-
 // console.log(saludarEntrenador());
 
 // ---------------------------------------------------------------------
@@ -110,6 +106,3 @@ ReactDOM.render(<App />, contenedor)
 // console.log(evaluarPokebola());
 
 // --------------------------------------------------------------------------------------------------
-
-
-
