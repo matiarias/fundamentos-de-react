@@ -1,6 +1,14 @@
 import React from "react";
 
-const TareaCard = ({ item, index, borrarTarea, editarTareaBtn }) => {
+const TareaCard = ({ item, id, editarTareaBtn, task, setTask }) => {
+  // ----------------- función para borrar tareas --------------------------
+
+  const borrarTarea = (indice) => {
+    const tareasPendientes = [...task];
+    tareasPendientes.splice(indice, 1);
+    setTask(tareasPendientes);
+  };
+
   return (
     <div>
       <div className="card mb-3">
@@ -9,7 +17,7 @@ const TareaCard = ({ item, index, borrarTarea, editarTareaBtn }) => {
 
           <div>
             <button
-              onClick={() => borrarTarea(index)}
+              onClick={() => borrarTarea(id)}
               className="btn btn-secondary btn-sm me-2"
             >
               X

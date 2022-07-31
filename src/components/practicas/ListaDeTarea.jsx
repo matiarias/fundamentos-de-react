@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import EditarTareaForm from "./EditarTareaForm";
 import TareaCard from "./TareaCard";
 import TareaForm from "./TareaForm";
 
@@ -8,10 +9,11 @@ const Practica = () => {
   const [task, setTask] = useState([]);
   const [validacion, setValidacion] = useState(true);
   const [modoEdit, setModoEdit] = useState(false);
-  const [editInput, setEditInput] = useState("");
+  // const [editInput, setEditInput] = useState("");
+
+  // --- useEffect para traer los datos con local storage y luego agregar cada tarea en el arreglo -----
 
   useEffect(() => {
-    console.log("hola");
     if (localStorage.getItem("tareas")) {
       setTask(JSON.parse(localStorage.getItem("tareas")));
     }
@@ -33,7 +35,7 @@ const Practica = () => {
     e.preventDefault();
 
     if (inputValue.trim() !== "") {
-      setTask([inputValue, ...task]);
+      setTask([inputValue.trim(), ...task]);
       setInputValue("");
       setValidacion(true);
     } else {
@@ -41,34 +43,16 @@ const Practica = () => {
     }
   };
 
-  // ---------------------- Función Borrar tarea y Borrar todas las tareas --------------------------
-
-  const borrarTarea = (indice) => {
-    const tareasPendientes = [...task];
-    tareasPendientes.splice(indice, 1);
-    setTask(tareasPendientes);
-  };
+  // ---------------------- Función botón Borrar todas las tareas --------------------------
 
   const borrarTodo = () => {
     setTask([]);
   };
 
-  // ------------------------------ Función editar tareas ---------------------------------------
-
-  const handleChangeEdit = ({ target }) => {
-    setEditInput(target.value);
-    console.log(target.value);
-  };
+  // -------------------- Funcion botón para abrir el formulario para editar tareas ----------------------
 
   const editarTareaBtn = () => {
     setModoEdit(true);
-  };
-
-  const submitEdit = (e) => {
-    e.preventDefault();
-    setEditInput("");
-    setModoEdit(false);
-    console.log("submit edit funcionando");
   };
 
   // --------------------------------------------------------------------------------------------
@@ -77,14 +61,15 @@ const Practica = () => {
     <>
       <div className="container">
         <div className="row mt-4">
-          <div
-            onClick={borrarTodo}
-            className="col-12 col-md-6 offset-md-3 mb-1 d-flex justify-content-between align-items-center"
-          >
+          <div className="col-12 col-md-6 offset-md-3 mb-1 d-flex justify-content-between align-items-center">
             <h3 className="text-center">Lista de tareas</h3>
-            <button className="btn btn-dark btn-sm">Borrar Todo</button>
+            <button onClick={borrarTodo} className="btn btn-dark btn-sm">
+              Borrar Todo
+            </button>
           </div>
         </div>
+
+        {/* -------------------------- Tarea Form ----------------------- */}
 
         <div className="row mt-2">
           <div className="col-12 col-md-6 offset-md-3">
@@ -113,6 +98,8 @@ const Practica = () => {
           </div>
         </div>
 
+        {/* ------------------------- Tarea Card ----------------------- */}
+
         <div className="row">
           <div className="col-12 col-md-6 offset-md-3 mt-3">
             {!modoEdit ? (
@@ -120,37 +107,18 @@ const Practica = () => {
                 <TareaCard
                   key={index}
                   item={item}
-                  index={index}
-                  borrarTarea={borrarTarea}
+                  id={index}
                   editarTareaBtn={editarTareaBtn}
+                  task={task}
+                  setTask={setTask}
                 />
               ))
             ) : (
-              <div className="card">
-                <div className="card-body">
-                  <h4 className="text-center">Edita tu tarea</h4>
-                  <div className="d-flex">
-                    <div className="w-100 me-3">
-                      <form onSubmit={submitEdit}>
-                        <input
-                          type="text"
-                          maxLength="25"
-                          className="form-control"
-                          value={editInput}
-                          onChange={handleChangeEdit}
-                        />
-                      </form>
-                    </div>
-
-                    <button
-                      onClick={submitEdit}
-                      className="btn - btn-primary btn-sm"
-                    >
-                      Guardar
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <EditarTareaForm
+                setModoEdit={setModoEdit}
+                task={task}
+                setTask={setTask}
+              />
             )}
           </div>
         </div>
